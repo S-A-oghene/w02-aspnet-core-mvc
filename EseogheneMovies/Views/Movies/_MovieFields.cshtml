@@ -1,0 +1,35 @@
+@model Movie
+<div class="form-field">
+    <label asp-for="Title"></label>
+    <input asp-for="Title" placeholder="Enter the movie title" maxlength="60" />
+    <span asp-validation-for="Title" class="validation-message"></span>
+</div>
+<div class="form-field">
+    <label asp-for="ReleaseDate"></label>
+    <input asp-for="ReleaseDate" type="date" />
+    <span asp-validation-for="ReleaseDate" class="validation-message"></span>
+</div>
+<div class="form-field">
+    <label asp-for="Genre"></label>
+    <input asp-for="Genre" placeholder="e.g. Drama, Comedy, Science Fiction" maxlength="30" />
+    <span asp-validation-for="Genre" class="validation-message"></span>
+</div>
+<div class="form-field">
+    <label asp-for="Price"></label>
+    <input asp-for="Price" type="number" min="0.01" max="999.99" step="0.01" />
+    <span asp-validation-for="Price" class="validation-message"></span>
+    <small class="field-hint">Enter a value between 0.01 and 999.99.</small>
+</div>
+<div class="form-field">
+    <label asp-for="Rating"></label>
+    <select asp-for="Rating">
+        <option value="G">G</option>
+        <option value="PG">PG</option>
+        <option value="PG-13">PG-13</option>
+        <option value="R">R</option>
+        <option value="NC-17">NC-17</option>
+        <option value="NR">NR (Not rated)</option>
+        <option value="TV-PG">TV-PG (television rating)</option>
+    </select>
+    <span asp-validation-for="Rating" class="validation-message"></span>
+</div>

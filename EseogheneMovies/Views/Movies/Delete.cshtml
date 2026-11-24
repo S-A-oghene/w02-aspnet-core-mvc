@@ -1,0 +1,17 @@
+@model Movie
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+<section class="page-heading">
+    <p class="eyebrow">REMOVE A TITLE</p>
+    <h1>Delete this movie?</h1>
+    <p>Please check the title before confirming. This action removes the record from your collection.</p>
+</section>
+<div class="content-panel delete-panel">
+    <h2>@Model.Title</h2>
+    <p>@Model.ReleaseDate.Year · @Model.Genre · @Model.Rating</p>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="form-actions">
+        <button type="submit" class="button button-danger">Yes, delete movie</button>
+        <a asp-action="Index" class="button button-secondary">Keep movie</a>
+    </form>
+</div>

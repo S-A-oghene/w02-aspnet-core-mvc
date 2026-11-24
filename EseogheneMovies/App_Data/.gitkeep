@@ -1,0 +1,2 @@
+This folder holds the local SQLite database created the first time the app runs.
+The database file itself is excluded from Git by the repository .gitignore.

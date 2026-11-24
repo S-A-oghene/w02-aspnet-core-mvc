@@ -1,0 +1,22 @@
+@model Movie
+@{
+    ViewData["Title"] = "Add a Movie";
+}
+<section class="page-heading">
+    <p class="eyebrow">GROW YOUR COLLECTION</p>
+    <h1>Add a movie</h1>
+    <p>Enter the movie information below. Fields marked by validation messages must be completed correctly.</p>
+</section>
+<div class="form-panel">
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="All" class="validation-summary"></div>
+        <partial name="_MovieFields" model="Model" />
+        <div class="form-actions">
+            <button type="submit" class="button button-primary">Save movie</button>
+            <a asp-action="Index" class="button button-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

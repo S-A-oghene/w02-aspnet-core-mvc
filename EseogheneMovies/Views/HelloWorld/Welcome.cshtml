@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Welcome";
+    var numberOfTimes = (int)(ViewData["NumTimes"] ?? 1);
+}
+<section class="page-heading">
+    <p class="eyebrow">CONTROLLER ACTION + RAZOR VIEW</p>
+    <h1>Welcome</h1>
+    <p>The controller passed these values to the view using <code>ViewData</code>.</p>
+</section>
+<div class="content-panel">
+    <ul class="welcome-list">
+        @for (var index = 0; index < numberOfTimes; index++)
+        {
+            <li>@ViewData["Message"]</li>
+        }
+    </ul>
+    <a asp-action="Index" class="text-link">Back to the MVC tutorial example</a>
+</div>

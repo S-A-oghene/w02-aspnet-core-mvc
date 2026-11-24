@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Hello World MVC Demo";
+}
+<section class="page-heading">
+    <p class="eyebrow">MICROSOFT TUTORIAL EXERCISE</p>
+    <h1>Hello, MVC</h1>
+    <p>This page is served by <code>HelloWorldController</code> and rendered by a Razor view.</p>
+</section>
+<div class="content-panel">
+    <h2>Try a controller action</h2>
+    <p>Use the button to visit the Welcome action with values in the URL.</p>
+    <a class="button button-primary" asp-controller="HelloWorld" asp-action="Welcome" asp-route-name="Student" asp-route-numTimes="3">Open Welcome example</a>
+    <p class="small-note">You can also test this address: <code>/HelloWorld/Welcome?name=Student&amp;numTimes=3</code></p>
+</div>

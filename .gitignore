@@ -1,0 +1,19 @@
+# .NET build output
+**/bin/
+**/obj/
+
+# Local database files (the app creates this automatically)
+EseogheneMovies/App_Data/*.db
+EseogheneMovies/App_Data/*.db-shm
+EseogheneMovies/App_Data/*.db-wal
+
+# User secrets, local settings, and logs
+**/secrets.json
+**/appsettings.Development.json
+*.user
+*.suo
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

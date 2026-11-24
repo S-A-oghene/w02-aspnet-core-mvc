@@ -1,0 +1,22 @@
+@model Movie
+@{
+    ViewData["Title"] = "Movie Details";
+}
+<section class="page-heading">
+    <p class="eyebrow">MOVIE INFORMATION</p>
+    <h1>@Model.Title</h1>
+    <p>Review the saved details for this movie.</p>
+</section>
+<div class="content-panel details-panel">
+    <dl class="details-list">
+        <div><dt>Movie title</dt><dd>@Model.Title</dd></div>
+        <div><dt>Release date</dt><dd>@Model.ReleaseDate.ToString("dd MMMM yyyy")</dd></div>
+        <div><dt>Genre</dt><dd>@Model.Genre</dd></div>
+        <div><dt>Price</dt><dd>@Model.Price.ToString("C2")</dd></div>
+        <div><dt>Rating</dt><dd><span class="rating-pill">@Model.Rating</span></dd></div>
+    </dl>
+    <div class="form-actions">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="button button-primary">Edit movie</a>
+        <a asp-action="Index" class="button button-secondary">Back to collection</a>
+    </div>
+</div>

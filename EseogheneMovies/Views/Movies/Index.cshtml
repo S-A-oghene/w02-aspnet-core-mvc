@@ -1,0 +1,111 @@
+@model MovieSearchViewModel
+@{
+    ViewData["Title"] = "My Favorite Movies";
+}
+<section class="hero">
+    <div class="hero-copy">
+        <p class="eyebrow">YOUR PERSONAL FILM LIBRARY</p>
+        <h1>My Favorite Movies</h1>
+        <p class="hero-description">A small collection built around epic fantasy, Camelot, and journeys beyond the stars. Search by title or genre, or choose a release year to show entries from that year onward.</p>
+        <a class="button button-primary" asp-action="Create"><span aria-hidden="true">＋</span> Add a movie</a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+        <span class="hero-art-circle"></span>
+        <span class="hero-art-ticket">YOUR<br />MOVIE<br />SHELF</span>
+        <span class="hero-art-star">✦</span>
+    </div>
+</section>
+
+<section class="search-panel" aria-labelledby="search-heading">
+    <div class="search-heading-row">
+        <div>
+            <p class="eyebrow">FIND SOMETHING TO WATCH</p>
+            <h2 id="search-heading">Search your collection</h2>
+        </div>
+        <span class="result-count">@Model.Movies.Count @(Model.Movies.Count == 1 ? "movie" : "movies") shown</span>
+    </div>
+    <form asp-action="Index" method="get" class="search-form">
+        <div class="form-field search-text-field">
+            <label asp-for="SearchString">Title or genre</label>
+            <input asp-for="SearchString" type="search" placeholder="e.g. Inception or Drama" autocomplete="off" />
+        </div>
+        <div class="form-field year-field">
+            <label asp-for="Year">Release year</label>
+            <select asp-for="Year">
+                <option value="">Any year</option>
+                @foreach (var availableYear in Model.AvailableYears)
+                {
+                    <option value="@availableYear">@availableYear or newer</option>
+                }
+            </select>
+        </div>
+        <div class="search-actions">
+            <button type="submit" class="button button-primary">Search</button>
+            <a asp-action="Index" class="button button-secondary">Clear</a>
+        </div>
+    </form>
+    <p class="search-help">The year filter includes movies released in the selected year <strong>and every later year</strong>.</p>
+</section>
+
+<section class="collection-section" aria-labelledby="collection-heading">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">FANTASY · LEGEND · THE COSMOS</p>
+            <h2 id="collection-heading">Your collection</h2>
+            <p class="small-note">Your chosen starting collection: The Lord of the Rings, Merlin, and Interstellar.</p>
+        </div>
+    </div>
+
+    @if (Model.Movies.Count == 0)
+    {
+        <div class="empty-state">
+            <div class="empty-icon" aria-hidden="true">◎</div>
+            <h3>No movies match your search</h3>
+            <p>Try a different title, genre, or release year. You can also clear the filters to see every movie.</p>
+            <a asp-action="Index" class="button button-secondary">Show all movies</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-wrap">
+            <table class="movie-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Release date</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var movie in Model.Movies)
+                    {
+                        <tr>
+                            <td data-label="Movie">
+                                <div class="movie-title-cell">
+                                    <span class="movie-initial" aria-hidden="true">@movie.Title.Substring(0, 1).ToUpperInvariant()</span>
+                                    <div>
+                                        <a class="movie-title-link" asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a>
+                                        <span class="movie-year">@movie.ReleaseDate.Year</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-label="Release date">@movie.ReleaseDate.ToString("dd MMM yyyy")</td>
+                            <td data-label="Genre">@movie.Genre</td>
+                            <td data-label="Price">@movie.Price.ToString("C2")</td>
+                            <td data-label="Rating"><span class="rating-pill">@movie.Rating</span></td>
+                            <td data-label="Actions">
+                                <div class="row-actions">
+                                    <a asp-action="Edit" asp-route-id="@movie.Id">Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@movie.Id">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
